@@ -1,3 +1,4 @@
 @echo off
-rebar compile
+rem rebar compile
+erl -make
 pause
