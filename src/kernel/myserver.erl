@@ -14,8 +14,6 @@
 %% -define(APPS, [myserver]).
 
 start() ->
-    % fanying
-    io:format("=====11111 ~n", []),
     try
         ok = start_applications(?APPS) 
     after
@@ -32,15 +30,12 @@ restart() ->
     ok.
 
 manage_applications(Iterate, Do, Undo, SkipError, ErrorTag, Apps) ->
-    % fanying
-    io:format("=====Apps=~w ~n", [Apps]),
     F = fun (App, Acc) ->
             case Do(App) of
                 ok -> [App | Acc];
                 {error, {SkipError, _}} -> Acc;
                 {error, Reason} ->
                     lists:foreach(Undo, Acc),
-                    io:format("=====ErrorTag=~w App[~w] Reason~w ~n", [ErrorTag, App, Reason]),
                     throw({error, {ErrorTag, App, Reason}})
             end
         end,
@@ -48,8 +43,6 @@ manage_applications(Iterate, Do, Undo, SkipError, ErrorTag, Apps) ->
     ok.
 
 start_applications(Apps) ->
-    % fanying
-    io:format("=====Apps=~w ~n", [Apps]),
     manage_applications(
         fun lists:foldl/3,
         fun application:start/1,

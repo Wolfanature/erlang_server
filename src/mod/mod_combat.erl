@@ -6,9 +6,9 @@
 
 -module(mod_combat).
 -export([
-        combat/3,
-        arena/2,
-        init_monster/1
+        combat/3
+        ,arena/2
+        ,init_monster/1
         %% ,fix_pos/1
     ]
 ).
